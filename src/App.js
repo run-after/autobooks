@@ -5,7 +5,14 @@ import formatTime from './scripts/formatTime';
 
 function App() {
 
-  const [tasks, setTasks] = useState({ content: [] });
+  let initialTasks;
+  if (sessionStorage.length < 1) {
+    initialTasks = { content: [] };
+  } else {
+    initialTasks = JSON.parse(sessionStorage['tasks']);
+  };
+
+  const [tasks, setTasks] = useState(initialTasks);
 
   const addTask = (e) => {
     e.target.disabled = true;
@@ -17,7 +24,6 @@ function App() {
     setTasks({ content: tempTasks });
   };
   
-
   const displayTask = (obj, index) => {
     return (
       <div className='row' key={index} data-activity={index}>
@@ -98,6 +104,7 @@ function App() {
     });
   
     e.target.remove();
+    sessionStorage.setItem('tasks', JSON.stringify(tasks));
   };
 
   return (
