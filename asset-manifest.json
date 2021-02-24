@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/autobooks/static/css/main.553ddd3d.chunk.css",
+    "main.js": "/autobooks/static/js/main.014764c0.chunk.js",
+    "main.js.map": "/autobooks/static/js/main.014764c0.chunk.js.map",
+    "runtime-main.js": "/autobooks/static/js/runtime-main.7918ed3d.js",
+    "runtime-main.js.map": "/autobooks/static/js/runtime-main.7918ed3d.js.map",
+    "static/js/2.cc39b8fa.chunk.js": "/autobooks/static/js/2.cc39b8fa.chunk.js",
+    "static/js/2.cc39b8fa.chunk.js.map": "/autobooks/static/js/2.cc39b8fa.chunk.js.map",
+    "index.html": "/autobooks/index.html",
+    "static/css/main.553ddd3d.chunk.css.map": "/autobooks/static/css/main.553ddd3d.chunk.css.map",
+    "static/js/2.cc39b8fa.chunk.js.LICENSE.txt": "/autobooks/static/js/2.cc39b8fa.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7918ed3d.js",
+    "static/js/2.cc39b8fa.chunk.js",
+    "static/css/main.553ddd3d.chunk.css",
+    "static/js/main.014764c0.chunk.js"
+  ]
+}
