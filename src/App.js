@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import taskFactory from './scripts/taskFactory';
+import formatTime from './scripts/formatTime';
 
 function App() {
 
@@ -23,7 +24,11 @@ function App() {
         <div className='start-time'>{obj.startTime && obj.startTimeString}</div>
         <div className='end-time'>{obj.endTime && obj.endTimeString}</div>
         <div className='duration'>
-          {obj.duration}
+          {
+            (!obj.duration &&
+            formatTime(timer.time)) ||
+            formatTime(obj.duration)
+          }
         </div>
         <div className='description'>
           {
@@ -38,7 +43,12 @@ function App() {
     );
   };
 
-    const startTimer = (e) => {
+  const [timer, setTimer] = useState({
+    timeStart: 0,
+    time: 0
+  });
+
+  const startTimer = (e) => {
     e.preventDefault();
 
     // selects task from tasks object
@@ -48,10 +58,19 @@ function App() {
     task.startTimeString = task.startTime.toLocaleString()
 
     const description = e.target[0].value;
-    task.description = description;
-    
-    console.log(tasks)
+    task.description = description;    
+
+    let startTime = new Date().getTime();
+    // This updates timer on screen
+    setInterval(() => {
+      setTimer({
+        timeStart: startTime,
+        time: new Date().getTime() - startTime
+      });
+    }, 10);
   };
+
+  
 
 
   return (
