@@ -6,7 +6,7 @@ function App() {
 
   const [tasks, setTasks] = useState({ content: [] });
 
-  const addRow = (e) => {
+  const addTask = (e) => {
     e.target.disabled = true;
     let tempTasks = tasks.content;
     tempTasks.push(
@@ -14,6 +14,21 @@ function App() {
     );
     
     setTasks({ content: tempTasks });
+  };
+
+  const displayTask = (obj, index) => {
+    return (
+      <div className='row' key={index} data-activity={index}>
+        <div className='start-time'>{obj.startTime && obj.startTimeString}</div>
+        <div className='end-time'>{obj.endTime && obj.endTimeString}</div>
+        <div className='duration'>
+          {obj.duration}
+        </div>
+        <div className='description'>
+          {obj.description}
+        </div>
+      </div>
+    );
   };
 
 
@@ -29,8 +44,13 @@ function App() {
         <div className='duration'>Duration</div>
         <div className='description'>Description</div>
         </div>
+        {
+          tasks.content.map((task, index) => {
+            return displayTask(task, index);
+          })
+        }
       </div>
-      <button className='add-btn' onClick={addRow}>Add</button>
+      <button className='add-btn' onClick={addTask}>Add</button>
     </div>
   );
 }
