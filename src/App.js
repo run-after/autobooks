@@ -1,11 +1,22 @@
 import './App.css';
 import { useState } from 'react';
+import taskFactory from './scripts/taskFactory';
 
 function App() {
 
   const [tasks, setTasks] = useState({ content: [] });
 
-  
+  const addRow = (e) => {
+    e.target.disabled = true;
+    let tempTasks = tasks.content;
+    tempTasks.push(
+      taskFactory()
+    );
+    
+    setTasks({ content: tempTasks });
+  };
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -19,6 +30,7 @@ function App() {
         <div className='description'>Description</div>
         </div>
       </div>
+      <button className='add-btn' onClick={addRow}>Add</button>
     </div>
   );
 }
