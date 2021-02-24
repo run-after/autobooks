@@ -48,6 +48,8 @@ function App() {
     time: 0
   });
 
+  let interval;
+
   const startTimer = (e) => {
     e.preventDefault();
 
@@ -58,11 +60,19 @@ function App() {
     task.startTimeString = task.startTime.toLocaleString()
 
     const description = e.target[0].value;
-    task.description = description;    
+    const descriptionBox = e.target.parentNode;
+    task.description = description;
+
+    const endBtn = document.createElement('button');
+    endBtn.classList.add('end-btn');
+    endBtn.addEventListener('click', endTimer);
+    endBtn.textContent = 'End';
+    
+    descriptionBox.parentNode.appendChild(endBtn);
 
     let startTime = new Date().getTime();
     // This updates timer on screen
-    setInterval(() => {
+    interval = setInterval(() => {
       setTimer({
         timeStart: startTime,
         time: new Date().getTime() - startTime
@@ -70,8 +80,25 @@ function App() {
     }, 10);
   };
 
-  
+  const endTimer = (e) => {
 
+    document.querySelector('.add-btn').disabled = false;
+
+    const task = tasks.content[e.target.parentNode.dataset.activity];
+
+    task.endTime = new Date();
+    task.endTimeString = task.endTime.toLocaleString();
+    task.duration = task.endTime - task.startTime;
+  
+    clearInterval(interval);
+
+    setTimer({
+      timeStart: 0,
+      time: 0
+    });
+  
+    e.target.remove();
+  };
 
   return (
     <div className="App">

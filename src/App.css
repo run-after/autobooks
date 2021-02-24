@@ -49,3 +49,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.end-btn {
+  background: red;
+  width: 100px;
+}
