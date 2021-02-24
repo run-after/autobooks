@@ -15,6 +15,7 @@ function App() {
     
     setTasks({ content: tempTasks });
   };
+  
 
   const displayTask = (obj, index) => {
     return (
@@ -27,7 +28,7 @@ function App() {
         <div className='description'>
           {
             obj.description ||
-            <form>
+            <form onSubmit={startTimer}>
               <textarea required type='textarea' placeholder='Type your description' />
               <button type='submit'>Start</button>
             </form>
@@ -35,6 +36,21 @@ function App() {
         </div>
       </div>
     );
+  };
+
+    const startTimer = (e) => {
+    e.preventDefault();
+
+    // selects task from tasks object
+    const task = tasks.content[e.target.parentNode.parentNode.dataset.activity];
+    // sets start time in object
+    task.startTime = new Date();
+    task.startTimeString = task.startTime.toLocaleString()
+
+    const description = e.target[0].value;
+    task.description = description;
+    
+    console.log(tasks)
   };
 
 
