@@ -25,7 +25,13 @@ function App() {
           {obj.duration}
         </div>
         <div className='description'>
-          {obj.description}
+          {
+            obj.description ||
+            <form>
+              <textarea required type='textarea' placeholder='Type your description' />
+              <button type='submit'>Start</button>
+            </form>
+          }
         </div>
       </div>
     );
